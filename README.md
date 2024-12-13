@@ -112,6 +112,9 @@
       - [类的继承](#类的继承)
     - [模块化module](#模块化module)
     - [set和map集合](#set和map集合)
+    - [...](#)
+      - [spread](#spread)
+      - [rest](#rest)
 
 ## 数据类型
 
@@ -2122,4 +2125,51 @@ map.delete(1);
 console.log(map); // Map(1) { 2 => 4 }
 console.log(map.clear()); // undefined
 console.log(map); // Map(0) {}
+```
+
+### ...
+
+称为spread和rest运算符。
+
+#### spread
+
+```javascript
+// 展开数组
+var a = [1, 2, 3];
+var b = [4, 5, ...a];
+console.log(b); // [ 4, 5, 1, 2, 3 ]
+var e = [...a, ...b];
+console.log(e); // [1, 2, 3, 4, 5, 1, 2, 3]
+
+// 展开对象
+var c = { 1: 2, 3: 4 };
+var d = { 5: 6, ...c };
+console.log(d); // { '1': 2, '3': 4, '5': 6 }
+f = { ...c, ...d };
+console.log(f); // { '1': 2, '3': 4, '5': 6 }
+```
+
+#### rest
+
+```javacript
+// 收集参数为数组
+function sum(...num) {
+  return num.reduce((acc, currentValue) => acc + currentValue, 0);
+}
+var b = sum(1, 2, 3, 4, 5);
+console.log(b); // 15
+
+// 解构中的rest
+// 对象解构
+var a = { a: 1, b: 2, c: 3, d: 4 };
+var { a, ...rest } = a;
+console.log(a); // 1
+console.log(rest); // { b: 2, c: 3, d: 4 }
+
+// 数组解构
+var c = [1, 2, 3, 4];
+var [first, second, ...rest] = c;
+console.log(first); // 1
+console.log(second); // 2
+console.log(rest); // [3, 4]
 ```
